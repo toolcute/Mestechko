@@ -1,74 +1,703 @@
-<!DOCTYPE html> <html lang="ru"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Местечко — Новости столицы Южного Урала</title> <!-- Google Fonts: Inter & Material Symbols --> <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" />
-<style> /* MD3E Expressive Dark/Warm Theme Variables */ :root { --md-sys-color-background: #141210; --md-sys-color-surface: #1C1917; --md-sys-color-surface-container: #26221F; --md-sys-color-surface-container-high: #322D29; --md-sys-color-primary: #E8C4A2; --md-sys-color-on-primary: #442B07; --md-sys-color-primary-container: #5D411B; --md-sys-color-on-primary-container: #FFDDC3; --md-sys-color-outline: #857467; --md-sys-color-outline-variant: #494541; --md-sys-color-on-surface: #EDE0DB; --md-sys-color-on-surface-variant: #D3C4BE;
---md-shape-corner-extra-large: 28px; --md-shape-corner-large: 20px; --md-shape-corner-medium: 12px; --md-shape-corner-full: 9999px; }
-@media (pointer: fine) { :root, a, button, .news-card, .bumper-item, .carousel-btn { cursor: none !important; } }
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-body { background-color: var(--md-sys-color-background); color: var(--md-sys-color-on-surface); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding-bottom: 60px; overflow-x: hidden; }
-/* Кастомный MD3E курсор */ .md3-cursor { position: fixed; top: -50px; left: -50px; width: 22px; height: 22px; background-color: var(--md-sys-color-primary); border-radius: 50%; pointer-events: none; transform: translate(-50%, -50%); transition: width 0.22s cubic-bezier(0.2, 0, 0, 1), height 0.22s cubic-bezier(0.2, 0, 0, 1), background-color 0.2s, border-radius 0.22s; z-index: 9999; mix-blend-mode: difference; }
-.md3-cursor.hovered { width: 46px; height: 46px; background-color: var(--md-sys-color-on-primary-container); border-radius: 16px; opacity: 0.9; }
-.md3-cursor.clicking { width: 16px; height: 16px; }
-@media (pointer: coarse) { .md3-cursor { display: none; } }
-/* Шапка сайта */ header { width: 100%; max-width: 1120px; padding: 32px 24px 20px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-.brand { display: flex; align-items: center; gap: 14px; }
-.brand-icon { width: 52px; height: 52px; background-color: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); border-radius: var(--md-shape-corner-large); display: flex; align-items: center; justify-content: center; font-size: 28px; }
-.brand-text { display: flex; flex-direction: column; }
-.brand-subtitle-top { font-size: 12px; color: var(--md-sys-color-outline); font-weight: 500; letter-spacing: 0.3px; margin-bottom: 1px; }
-.brand-text h1 { font-size: 26px; font-weight: 700; color: var(--md-sys-color-on-surface); letter-spacing: -0.5px; line-height: 1.1; }
-/* Таблетка мини-рекламы приложения Mestyachkovoe */ .app-promo-pill { background-color: var(--md-sys-color-surface-container-high); color: var(--md-sys-color-on-surface); padding: 8px 16px 8px 12px; border-radius: var(--md-shape-corner-full); border: 1px solid var(--md-sys-color-outline-variant); display: flex; align-items: center; gap: 10px; text-decoration: none; transition: all 0.25s cubic-bezier(0.2, 0, 0, 1); }
-.app-promo-pill:hover { background-color: var(--md-sys-color-primary-container); border-color: var(--md-sys-color-primary); transform: translateY(-2px); }
-.app-promo-icon { width: 30px; height: 30px; border-radius: 50%; background-color: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); display: flex; align-items: center; justify-content: center; font-size: 18px; }
-.app-promo-info { display: flex; flex-direction: column; }
-.app-promo-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--md-sys-color-primary); font-weight: 600; }
-.app-promo-name { font-size: 13px; font-weight: 600; color: var(--md-sys-color-on-surface); }
-/* Двухколоночная сетка: Лента + Правый разрез */ .layout-wrapper { width: 100%; max-width: 1120px; padding: 0 24px; display: grid; grid-template-columns: 1fr 320px; gap: 28px; margin-top: 8px; align-items: start; }
-@media (max-width: 860px) { .layout-wrapper { grid-template-columns: 1fr; } }
-/* Основная лента новостей */ main { display: flex; flex-direction: column; gap: 18px; }
-.section-title { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--md-sys-color-outline); margin-bottom: 2px; }
-#news-container { display: flex; flex-direction: column; gap: 16px; }
-/* Карточка новости */ .news-card { background-color: var(--md-sys-color-surface); border-radius: var(--md-shape-corner-extra-large); padding: 24px; border: 1px solid var(--md-sys-color-outline-variant); transition: transform 0.2s, background-color 0.2s, border-color 0.2s; display: flex; flex-direction: column; gap: 12px; }
-.news-card:hover { background-color: var(--md-sys-color-surface-container); border-color: var(--md-sys-color-outline); transform: translateY(-2px); }
-.news-meta { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--md-sys-color-outline); }
-.news-tag { background-color: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); padding: 4px 12px; border-radius: var(--md-shape-corner-medium); font-weight: 500; }
-.news-title { font-size: 20px; font-weight: 600; color: var(--md-sys-color-on-surface); line-height: 1.3; }
-.news-text { font-size: 15px; color: var(--md-sys-color-on-surface-variant); line-height: 1.55; white-space: pre-line; }
-.status-box { text-align: center; padding: 44px 24px; color: var(--md-sys-color-outline); background: var(--md-sys-color-surface); border-radius: var(--md-shape-corner-extra-large); border: 1px dashed var(--md-sys-color-outline-variant); }
-/* Правый разрез (Сайдбар приколов и бамперов) */ aside.sidebar-cutout { background-color: var(--md-sys-color-surface); border-radius: var(--md-shape-corner-extra-large); padding: 20px; border: 1px solid var(--md-sys-color-outline-variant); display: flex; flex-direction: column; gap: 20px; position: sticky; top: 24px; }
-.sidebar-header { display: flex; justify-content: space-between; align-items: center; }
-.sidebar-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--md-sys-color-outline); }
-/* Прокручиваемая шуточная реклама (Карусель) */ .joke-carousel { position: relative; border-radius: var(--md-shape-corner-large); overflow: hidden; background-color: var(--md-sys-color-surface-container); border: 1px solid var(--md-sys-color-outline-variant); }
-.carousel-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
-.carousel-track::-webkit-scrollbar { display: none; }
-.joke-slide { flex: 0 0 100%; scroll-snap-align: start; display: flex; flex-direction: column; }
-.joke-slide img { width: 100%; height: 170px; object-fit: cover; display: block; background-color: var(--md-sys-color-surface-container-high); }
-.joke-caption { padding: 12px 14px; font-size: 12px; color: var(--md-sys-color-on-surface-variant); line-height: 1.4; }
-.joke-caption strong { color: var(--md-sys-color-primary); display: block; margin-bottom: 2px; }
-.carousel-controls { display: flex; gap: 6px; }
-.carousel-btn { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--md-sys-color-outline-variant); background-color: var(--md-sys-color-surface-container-high); color: var(--md-sys-color-on-surface); display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
-.carousel-btn:hover { background-color: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); }
-/* Секция интернет-бамперов 88x31 */ .bumpers-section { display: flex; flex-direction: column; gap: 10px; padding-top: 14px; border-top: 1px dashed var(--md-sys-color-outline-variant); }
-.bumpers-grid { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-start; }
-/* Стилизация классических кнопок 88x31 в эстетике сайта */ .bumper-item { width: 88px; height: 31px; border: 1px solid var(--md-sys-color-outline); background-color: var(--md-sys-color-surface-container-high); color: var(--md-sys-color-on-surface); font-size: 9px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 1.05; padding: 2px 4px; image-rendering: pixelated; transition: transform 0.15s, border-color 0.15s; overflow: hidden; }
-.bumper-item:hover { transform: scale(1.06); border-color: var(--md-sys-color-primary); }
-.bumper-item img { width: 88px; height: 31px; object-fit: cover; display: block; }
-footer { margin-top: 48px; font-size: 13px; color: var(--md-sys-color-outline); text-align: center; } </style> </head> <body>
-<!-- Кастомный курсор --> <div class="md3-cursor" id="cursor"></div>
-<!-- Шапка --> <header> <div class="brand"> <div class="brand-icon"> <span class="material-symbols-rounded">nest_cam_wired_stand</span> </div> <div class="brand-text"> <span class="brand-subtitle-top">твоё</span> <h1>Местечко</h1> </div> </div>
-<!-- Mestyachkovoe --> <a href="https://github.com/toolcute/mestyachkovoe/releases" class="app-promo-pill" title="Скачать приложение Mestyachkovoe!"> <div class="app-promo-icon"> <span class="material-symbols-rounded" style="font-size: 18px;">deployed_code</span> </div> <div class="app-promo-info"> <span class="app-promo-label">Приложение</span> <span class="app-promo-name">Mestyachkovoe</span> </div> </a> </header>
-<!-- Основная сеточка + Правый разрез --> <div class="layout-wrapper"> <!-- Левая колонка: Новости --> <main> <div class="section-title">Новости столицы Южного Урала</div> <div id="news-container"> <div class="status-box">Загрузка свежих новостей...</div> </div> </main>
-<!-- Правый разрез: бамперы --> <aside class="sidebar-cutout"> <div class="sidebar-header"> <span class="sidebar-label">Рекламная пауза</span> <div class="carousel-controls"> <button class="carousel-btn" id="prev-slide" aria-label="Назад"> <span class="material-symbols-rounded" style="font-size: 18px;">chevron_left</span> </button> <button class="carousel-btn" id="next-slide" aria-label="Вперёд"> <span class="material-symbols-rounded" style="font-size: 18px;">chevron_right</span> </button> </div> </div>
-<!-- 88x31 --> <div class="bumpers-section"> <span class="sidebar-label">Бамперы (88x31)</span> <div class="bumpers-grid"> <!-- Примеры бамперов: можно вставить тег <img src="ссылка_на_гифку.gif"> внутрь <a> --> <a href="https://cyber.dabamos.de/88x31/rkrp-sverdlovsk-88x31.gif" class="bumper-item" style="background: #3B2818; color: #FFDDC3;"> CHELYABINSK </a> <a href="https://cyber.dabamos.de/88x31/blinchik.gif" class="bumper-item" style="background: #2C2623; color: #E8C4A2;"> Чиббургер хочу </a> <a href="https://cyber.dabamos.de/88x31/icon03.gif" class="bumper-item" style="background: #1E352F; color: #A7F3D0;"> што </a> <a href="https://cyber.dabamos.de/88x31/mozfd.gif" class="bumper-item" style="background: #4A2525; color: #FECACA;"> GET MESTYACHKOVOE </a> </div> </div> </aside> </div>
-<footer> Местечко by CuteTool </footer>
-<script> // 1. Логика курсора = document.getElementById('cursor');
-window.addEventListener('mousemove', (e) => { cursor.style.left = ${e.clientX}px; cursor.style.top = ${e.clientY}px; });
-window.addEventListener('mousedown', () => cursor.classList.add('clicking')); window.addEventListener('mouseup', () => cursor.classList.remove('clicking'));
-// Делегирование наведения для всех интерактивных элементов document.addEventListener('mouseover', (e) => { if (e.target.closest('a, button, .news-card, .bumper-item')) { cursor.classList.add('hovered'); } });
-document.addEventListener('mouseout', (e) => { if (e.target.closest('a, button, .news-card, .bumper-item')) { cursor.classList.remove('hovered'); } });
-// 2. Логика прокрутки шуточной рекламы const track = document.getElementById('carousel-track'); const prevBtn = document.getElementById('prev-slide'); const nextBtn = document.getElementById('next-slide');
-prevBtn.addEventListener('click', () => { track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' }); });
-nextBtn.addEventListener('click', () => { if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 5) { track.scrollTo({ left: 0, behavior: 'smooth' }); } else { track.scrollBy({ left: track.clientWidth, behavior: 'smooth' }); } });
-// 3. Загрузка новостей из JSON async function loadNews() { const container = document.getElementById('news-container'); try { const response = await fetch('news.json?' + new Date().getTime()); if (!response.ok) throw new Error('Файл новостей пока не создан');
-const newsList = await response.json();
-if (!newsList || newsList.length === 0) { container.innerHTML = <div class="status-box">Пока нет ни одной новости. Ждем первый пост </div>; return; }
-container.innerHTML = ''; [...newsList].reverse().forEach(item => { const card = document.createElement('article'); card.className = 'news-card'; card.innerHTML = <div class="news-meta"> <span class="news-tag">escapeHtml(item.tag||'Челябинск')</span><span>{escapeHtml(item.date)}</span> </div> <h2 class="news-title">escapeHtml(item.title)</h2><divclass="news-text">{escapeHtml(item.text)}</div>; container.appendChild(card); }); } catch (error) { container.innerHTML = <div class="news-card" style="text-align: center; border-color: var(--md-sys-color-primary-container);"> <span class="material-symbols-rounded" style="font-size: 36px; color: var(--md-sys-color-primary); margin: 0 auto 4px;">info</span> <h2 class="news-title">Сайт «Местечко» запущен!</h2> <p class="news-text">Ожидается первый пост из Telegram-бота или появление файла <code>news.json</code> в репозитории.</p> </div>; } }
-function escapeHtml(text) { if (!text) return ''; const map = { '&': '&', '<': '<', '>': '>', '"': '"', "'": ''' }; return String(text).replace(/[&<>"']/g, m => map[m]); }
-loadNews(); </script> </body> </html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Местечко - Новости Челябинска</title>
+    <!-- Google Fonts: Inter & Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" />
+    
+    <style>
+        /* MD3E Expressive Dark/Warm Theme Variables */
+        :root {
+            --md-sys-color-background: #141210;
+            --md-sys-color-surface: #1C1917;
+            --md-sys-color-surface-container: #26221F;
+            --md-sys-color-surface-container-high: #322D29;
+            --md-sys-color-primary: #E8C4A2;
+            --md-sys-color-on-primary: #442B07;
+            --md-sys-color-primary-container: #5D411B;
+            --md-sys-color-on-primary-container: #FFDDC3;
+            --md-sys-color-outline: #857467;
+            --md-sys-color-outline-variant: #494541;
+            --md-sys-color-on-surface: #EDE0DB;
+            --md-sys-color-on-surface-variant: #D3C4BE;
+            
+            --md-shape-corner-extra-large: 28px;
+            --md-shape-corner-large: 20px;
+            --md-shape-corner-medium: 12px;
+            --md-shape-corner-full: 9999px;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            html, body, a, button, .news-card, .bumper-item, .carousel-btn {
+                cursor: none !important;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--md-sys-color-background);
+            color: var(--md-sys-color-on-surface);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 60px;
+            overflow-x: hidden;
+        }
+
+        /* Кастомный MD3E курсор: центральная точка + отстающее кольцо */
+        .md3-cursor-dot,
+        .md3-cursor-ring {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 99999;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            will-change: transform;
+        }
+
+        .md3-cursor-dot.visible,
+        .md3-cursor-ring.visible {
+            opacity: 1;
+        }
+
+        .md3-cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #FFFFFF;
+            border-radius: 50%;
+            margin-left: -4px;
+            margin-top: -4px;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+        }
+
+        .md3-cursor-ring {
+            width: 36px;
+            height: 36px;
+            border: 1.5px solid rgba(232, 196, 162, 0.75);
+            background-color: rgba(232, 196, 162, 0.14);
+            backdrop-filter: blur(1px);
+            border-radius: 50%;
+            margin-left: -18px;
+            margin-top: -18px;
+            transition: width 0.25s cubic-bezier(0.2, 0, 0, 1),
+                        height 0.25s cubic-bezier(0.2, 0, 0, 1),
+                        margin 0.25s cubic-bezier(0.2, 0, 0, 1),
+                        background-color 0.2s,
+                        border-color 0.2s,
+                        opacity 0.2s;
+        }
+
+        .md3-cursor-ring.hovered {
+            width: 54px;
+            height: 54px;
+            margin-left: -27px;
+            margin-top: -27px;
+            background-color: rgba(232, 196, 162, 0.24);
+            border-color: var(--md-sys-color-primary);
+        }
+
+        .md3-cursor-ring.clicking {
+            width: 26px;
+            height: 26px;
+            margin-left: -13px;
+            margin-top: -13px;
+            background-color: rgba(232, 196, 162, 0.35);
+        }
+
+        @media (hover: none), (pointer: coarse) {
+            .md3-cursor-dot,
+            .md3-cursor-ring {
+                display: none !important;
+            }
+        }
+
+        /* Шапка сайта */
+        header {
+            width: 100%;
+            max-width: 1120px;
+            padding: 32px 24px 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand-icon {
+            width: 52px;
+            height: 52px;
+            background-color: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+            border-radius: var(--md-shape-corner-large);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-subtitle-top {
+            font-size: 12px;
+            color: var(--md-sys-color-outline);
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            margin-bottom: 1px;
+        }
+
+        .brand-text h1 {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--md-sys-color-on-surface);
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+        }
+
+        /* Таблетка мини-рекламы приложения Mestyachkovoe */
+        .app-promo-pill {
+            background-color: var(--md-sys-color-surface-container-high);
+            color: var(--md-sys-color-on-surface);
+            padding: 8px 18px 8px 12px;
+            border-radius: var(--md-shape-corner-full);
+            border: 1px solid var(--md-sys-color-outline-variant);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        .app-promo-pill:hover {
+            background-color: var(--md-sys-color-primary-container);
+            border-color: var(--md-sys-color-primary);
+            transform: translateY(-2px);
+        }
+
+        .app-promo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .app-promo-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-promo-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            color: var(--md-sys-color-primary);
+            font-weight: 600;
+        }
+
+        .app-promo-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--md-sys-color-on-surface);
+        }
+
+        /* Двухколоночная сетка: Лента + Правый разрез */
+        .layout-wrapper {
+            width: 100%;
+            max-width: 1120px;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 324px;
+            gap: 28px;
+            margin-top: 8px;
+            align-items: start;
+        }
+
+        @media (max-width: 860px) {
+            .layout-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Основная лента новостей */
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--md-sys-color-outline);
+            margin-bottom: 2px;
+        }
+
+        #news-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* Карточка новости */
+        .news-card {
+            background-color: var(--md-sys-color-surface);
+            border-radius: var(--md-shape-corner-extra-large);
+            padding: 24px;
+            border: 1px solid var(--md-sys-color-outline-variant);
+            transition: transform 0.2s, background-color 0.2s, border-color 0.2s;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .news-card:hover {
+            background-color: var(--md-sys-color-surface-container);
+            border-color: var(--md-sys-color-outline);
+            transform: translateY(-2px);
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--md-sys-color-outline);
+        }
+
+        .news-tag {
+            background-color: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+            padding: 4px 12px;
+            border-radius: var(--md-shape-corner-medium);
+            font-weight: 500;
+        }
+
+        .news-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--md-sys-color-on-surface);
+            line-height: 1.3;
+        }
+
+        .news-text {
+            font-size: 15px;
+            color: var(--md-sys-color-on-surface-variant);
+            line-height: 1.55;
+            white-space: pre-line;
+        }
+
+        .status-box {
+            text-align: center;
+            padding: 44px 24px;
+            color: var(--md-sys-color-outline);
+            background: var(--md-sys-color-surface);
+            border-radius: var(--md-shape-corner-extra-large);
+            border: 1px dashed var(--md-sys-color-outline-variant);
+        }
+
+        /* Правый разрез (Сайдбар приколов и бамперов) */
+        aside.sidebar-cutout {
+            background-color: var(--md-sys-color-surface);
+            border-radius: var(--md-shape-corner-extra-large);
+            padding: 20px;
+            border: 1px solid var(--md-sys-color-outline-variant);
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            position: sticky;
+            top: 24px;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--md-sys-color-outline);
+        }
+
+        /* Прокручиваемая шуточная реклама (Карусель) */
+        .joke-carousel {
+            position: relative;
+            border-radius: var(--md-shape-corner-large);
+            overflow: hidden;
+            background-color: var(--md-sys-color-surface-container);
+            border: 1px solid var(--md-sys-color-outline-variant);
+        }
+
+        .carousel-track {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .joke-slide {
+            flex: 0 0 100%;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .joke-slide img {
+            width: 100%;
+            height: 185px;
+            object-fit: cover;
+            display: block;
+            background-color: var(--md-sys-color-surface-container-high);
+        }
+
+        .joke-caption {
+            padding: 12px 14px;
+            font-size: 12px;
+            color: var(--md-sys-color-on-surface-variant);
+            line-height: 1.4;
+        }
+
+        .joke-caption strong {
+            color: var(--md-sys-color-primary);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .carousel-controls {
+            display: flex;
+            gap: 6px;
+        }
+
+        .carousel-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid var(--md-sys-color-outline-variant);
+            background-color: var(--md-sys-color-surface-container-high);
+            color: var(--md-sys-color-on-surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .carousel-btn:hover {
+            background-color: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+        }
+
+        /* Секция интернет-бамперов 88x31 */
+        .bumpers-section {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-top: 14px;
+            border-top: 1px dashed var(--md-sys-color-outline-variant);
+        }
+
+        .bumpers-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: flex-start;
+        }
+
+        .bumper-item {
+            width: 88px;
+            height: 31px;
+            display: inline-block;
+            border: 1px solid var(--md-sys-color-outline-variant);
+            background-color: var(--md-sys-color-surface-container-high);
+            transition: transform 0.15s, border-color 0.15s;
+            overflow: hidden;
+        }
+
+        .bumper-item:hover {
+            transform: scale(1.07);
+            border-color: var(--md-sys-color-primary);
+            z-index: 2;
+        }
+
+        .bumper-item img {
+            width: 88px;
+            height: 31px;
+            display: block;
+            image-rendering: pixelated;
+        }
+
+        footer {
+            margin-top: 48px;
+            font-size: 13px;
+            color: var(--md-sys-color-outline);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Кастомный двойной курсор MD3E -->
+    <div class="md3-cursor-ring" id="cursor-ring"></div>
+    <div class="md3-cursor-dot" id="cursor-dot"></div>
+
+    <!-- Шапка -->
+    <header>
+        <div class="brand">
+            <div class="brand-icon">
+                <span class="material-symbols-rounded">nest_cam_wired_stand</span>
+            </div>
+            <div class="brand-text">
+                <span class="brand-subtitle-top">твоё</span>
+                <h1>Местечко</h1>
+            </div>
+        </div>
+
+        <!-- Мини-реклама приложения Mestyachkovoe со ссылкой на релизы GitHub -->
+        <a href="https://github.com/toolcute/mestyachkovoe/releases" target="_blank" rel="noopener" class="app-promo-pill" title="Скачать приложение Mestyachkovoe">
+            <div class="app-promo-icon">
+                <span class="material-symbols-rounded" style="font-size: 18px;">download</span>
+            </div>
+            <div class="app-promo-info">
+                <span class="app-promo-label">Скачать приложение</span>
+                <span class="app-promo-name">Mestyachkovoe</span>
+            </div>
+        </a>
+    </header>
+
+    <!-- Основная сетка: Лента + Правый разрез -->
+    <div class="layout-wrapper">
+        <!-- Левая колонка: Новости -->
+        <main>
+            <div class="section-title">Новости столицы Южного Урала</div>
+            <div id="news-container">
+                <div class="status-box">Загрузка свежих новостей из Челябинска...</div>
+            </div>
+        </main>
+
+        <!-- Правый разрез: Крутость и бамперы -->
+        <aside class="sidebar-cutout">
+            <div class="sidebar-header">
+                <span class="sidebar-label">Крутость</span>
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="prev-slide" aria-label="Назад">
+                        <span class="material-symbols-rounded" style="font-size: 18px;">chevron_left</span>
+                    </button>
+                    <button class="carousel-btn" id="next-slide" aria-label="Вперёд">
+                        <span class="material-symbols-rounded" style="font-size: 18px;">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Прокручиваемые фото-приколы -->
+            <div class="joke-carousel">
+                <div class="carousel-track" id="carousel-track">
+                    <div class="joke-slide">
+                        <img src="https://placehold.co/320x185/5D411B/FFDDC3?text=Фото+3" 
+                             onerror="this.src='https://placehold.co/320x185/322D29/E8C4A2?text=Крутость+дня'" 
+                             alt="Крутость 1">
+                        <div class="joke-caption">
+                            <strong>Photo 3</strong>
+                            Тут будет фото 3.
+                        </div>
+                    </div>
+                    <div class="joke-slide">
+                        <img src="https://placehold.co/320x185/5D411B/FFDDC3?text=Фото+2" alt="Крутость 2">
+                        <div class="joke-caption">
+                            <strong>Photo-2</strong>
+                            тут будет фото 2.
+                        </div>
+                    </div>
+                    <div class="joke-slide">
+                        <img src="https://placehold.co/320x185/26221F/D3C4BE?text=Фото+1" alt="Крутость 3">
+                        <div class="joke-caption">
+                            <strong>Photo-1</strong>
+                            тут будет фото 1.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Настоящие интернет-бамперы 88x31 -->
+            <div class="bumpers-section">
+                <span class="sidebar-label">Бамперы! (88x31)</span>
+                <div class="bumpers-grid">
+                    <a href="https://uralian.neocities.org" target="_blank" rel="noopener" class="bumper-item" title="РКРП Свердловск">
+                        <img src="https://cyber.dabamos.de/88x31/rkrp-sverdlovsk-88x31.gif" alt="РКРП Свердловск.. о Боже">
+                    </a>
+                    <a href="https://uralian.neocities.org" target="_blank" rel="noopener" class="bumper-item" title="Blinchik">
+                        <img src="https://cyber.dabamos.de/88x31/blinchik.gif" alt="Blinchik">
+                    </a>
+                    <a href="https://uralian.neocities.org" target="_blank" rel="noopener" class="bumper-item" title="Web 1.0">
+                        <img src="https://cyber.dabamos.de/88x31/icon03.gif" alt="Web Icon">
+                    </a>
+                    <a href="https://www.mozilla.org" target="_blank" rel="noopener" class="bumper-item" title="Free Download Mozilla">
+                        <img src="https://cyber.dabamos.de/88x31/mozfd.gif" alt="Mozilla лучше Edge">
+                    </a>
+                    <a href="https://www.microsoft.com" target="_blank" rel="noopener" class="bumper-item" title="Microsoft Windows Platform">
+                        <img src="https://cyber.dabamos.de/88x31/msbuiltwith.gif" alt="Microslop">
+                    </a>
+                    <a href="https://store.steampowered.com" target="_blank" rel="noopener" class="bumper-item" title="Play with Steam">
+                        <img src="https://cyber.dabamos.de/88x31/steam.gif" alt="Steam!!!">
+                    </a>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        Местечко by CuteTool
+    </footer>
+
+    <script>
+        // 1. Логика кастомного курсора
+        const dot = document.getElementById('cursor-dot');
+        const ring = document.getElementById('cursor-ring');
+        
+        let mouseX = -100, mouseY = -100;
+        let ringX = -100, ringY = -100;
+        let isCursorVisible = false;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            // Точка
+            dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+
+            if (!isCursorVisible) {
+                ringX = mouseX;
+                ringY = mouseY;
+                dot.classList.add('visible');
+                ring.classList.add('visible');
+                isCursorVisible = true;
+            }
+        });
+
+        // Плавная анимация отстающего кольца
+        function animateCursorRing() {
+            ringX += (mouseX - ringX) * 0.18;
+            ringY += (mouseY - ringY) * 0.18;
+            ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0)`;
+            requestAnimationFrame(animateCursorRing);
+        }
+        requestAnimationFrame(animateCursorRing);
+
+        document.addEventListener('mouseleave', () => {
+            dot.classList.remove('visible');
+            ring.classList.remove('visible');
+            isCursorVisible = false;
+        });
+
+        window.addEventListener('mousedown', () => ring.classList.add('clicking'));
+        window.addEventListener('mouseup', () => ring.classList.remove('clicking'));
+
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.closest('a, button, .news-card, .bumper-item')) {
+                ring.classList.add('hovered');
+            }
+        });
+
+        document.addEventListener('mouseout', (e) => {
+            if (e.target.closest('a, button, .news-card, .bumper-item')) {
+                ring.classList.remove('hovered');
+            }
+        });
+
+        // 2. Логика прокрутки блока «Крутость»
+        const track = document.getElementById('carousel-track');
+        const prevBtn = document.getElementById('prev-slide');
+        const nextBtn = document.getElementById('next-slide');
+
+        prevBtn.addEventListener('click', () => {
+            track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 5) {
+                track.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
+            }
+        });
+
+        // 3. Загрузка новостей из JSON
+        async function loadNews() {
+            const container = document.getElementById('news-container');
+            try {
+                const response = await fetch('news.json?' + new Date().getTime());
+                if (!response.ok) throw new Error('Файл новостей не найден! Беда..');
+                
+                const newsList = await response.json();
+                
+                if (!newsList || newsList.length === 0) {
+                    container.innerHTML = `<div class="status-box">Пока нет ни одной новости.</div>`;
+                    return;
+                }
+
+                container.innerHTML = '';
+                [...newsList].reverse().forEach(item => {
+                    const card = document.createElement('article');
+                    card.className = 'news-card';
+                    card.innerHTML = `
+                        <div class="news-meta">
+                            <span class="news-tag">${escapeHtml(item.tag || 'Челябинск')}</span>
+                            <span>${escapeHtml(item.date)}</span>
+                        </div>
+                        <h2 class="news-title">${escapeHtml(item.title)}</h2>
+                        <div class="news-text">${escapeHtml(item.text)}</div>
+                    `;
+                    container.appendChild(card);
+                });
+            } catch (error) {
+                container.innerHTML = `
+                    <div class="news-card" style="text-align: center; border-color: var(--md-sys-color-primary-container);">
+                        <span class="material-symbols-rounded" style="font-size: 36px; color: var(--md-sys-color-primary); margin: 0 auto 4px;">info</span>
+                        <h2 class="news-title">Сайт «Местечко» запущен!</h2>
+                        <p class="news-text">Ожидается синхронизация постов...</p>
+                    </div>
+                `;
+            }
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+            return String(text).replace(/[&<>"']/g, m => map[m]);
+        }
+
+        loadNews();
+    </script>
+</body>
+</html>
