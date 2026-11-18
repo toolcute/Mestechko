@@ -512,7 +512,7 @@
         <main>
             <div class="section-title">Новости столицы Южного Урала</div>
             <div id="news-container">
-                <div class="status-box">Загрузка свежих новостей из Челябинска...</div>
+                <div class="status-box">Загрузка новостей из Челябинска...</div>
             </div>
         </main>
 
@@ -530,30 +530,28 @@
                 </div>
             </div>
 
-           <!-- Прокручиваемые фото-приколы -->
+            <!-- Прокручиваемые фото-приколы -->
             <div class="joke-carousel">
                 <div class="carousel-track" id="carousel-track">
                     <div class="joke-slide">
-                        <img src="https://placehold.co/320x185/5D411B/FFDDC3?text=Фото+3" 
-                             onerror="this.src='https://placehold.co/320x185/322D29/E8C4A2?text=Крутость+дня'" 
-                             alt="Крутость 1">
+                        <img src="https://placehold.co/320x185/5D411B/FFDDC3?text=Фото+1" alt="Крутость 1">
                         <div class="joke-caption">
-                            <strong>Photo-3</strong>
-                            Тут будет фото 3.
+                            <strong>Тут будет фото 1/strong>
+                            Фото 1
                         </div>
                     </div>
                     <div class="joke-slide">
                         <img src="https://placehold.co/320x185/5D411B/FFDDC3?text=Фото+2" alt="Крутость 2">
                         <div class="joke-caption">
-                            <strong>Photo-2</strong>
-                            тут будет фото 2.
+                            <strong>Тут будет фото 2</strong>
+                            Фото 2
                         </div>
                     </div>
                     <div class="joke-slide">
-                        <img src="https://placehold.co/320x185/26221F/D3C4BE?text=Фото+1" alt="Крутость 3">
+                        <img src="https://placehold.co/320x185/26221F/D3C4BE?text=Фото+3" alt="Крутость 3">
                         <div class="joke-caption">
-                            <strong>Photo-1</strong>
-                            тут будет фото 1.
+                            <strong>тут будет фото 3</strong>
+                            Фото 3
                         </div>
                     </div>
                 </div>
@@ -561,7 +559,7 @@
 
             <!-- Настоящие интернет-бамперы 88x31 -->
             <div class="bumpers-section">
-                <span class="sidebar-label">Бамперы! (88x31)</span>
+                <span class="sidebar-label">Мои бамперы (88x31)</span>
                 <div class="bumpers-grid">
                     <a href="https://youtu.be/pPkFnq1KzSE?si=cNEwjJvTv4rK6Ip1" target="_blank" rel="noopener" class="bumper-item" title="РКРП Свердловск.. о Боже">
                         <img src="https://cyber.dabamos.de/88x31/rkrp-sverdlovsk-88x31.gif" alt="РКРП Свердловск.. о Боже">
@@ -587,27 +585,24 @@
     </div>
 
     <footer>
-        Местечко by CuteTool
-    </footer>
-
-    <script>
-
+        <span>Местечко by CuteTool</span>
         <a href="rss.xml" target="_blank">RSS-лента для Местячкового</a>
     </footer>
 
     <script>
-        // 1. Логика кастомного курсора
+        // 1. Логика кастомного курсора MD3E (точка + плавно отстающее кольцо)
         const dot = document.getElementById('cursor-dot');
         const ring = document.getElementById('cursor-ring');
         
-        let mouseX = -100, mouseY = -100;
-        let ringX = -100, ringY = -100;
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let ringX = mouseX;
+        let ringY = mouseY;
         let isCursorVisible = false;
 
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-
+        function updateCursorPos(x, y) {
+            mouseX = x;
+            mouseY = y;
             dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
 
             if (!isCursorVisible) {
@@ -617,7 +612,10 @@
                 ring.classList.add('visible');
                 isCursorVisible = true;
             }
-        });
+        }
+
+        window.addEventListener('pointermove', (e) => updateCursorPos(e.clientX, e.clientY));
+        window.addEventListener('mousemove', (e) => updateCursorPos(e.clientX, e.clientY));
 
         function animateCursorRing() {
             ringX += (mouseX - ringX) * 0.18;
@@ -697,8 +695,8 @@
                 container.innerHTML = `
                     <div class="news-card" style="text-align: center; border-color: var(--md-sys-color-primary-container);">
                         <span class="material-symbols-rounded" style="font-size: 36px; color: var(--md-sys-color-primary); margin: 0 auto 4px;">info</span>
-                        <h2 class="news-title">Сайт «Местечко» запущен!</h2>
-                        <p class="news-text">Ожидается пост...<code>news.json</code> в репозитории.</p>
+                        <h2 class="news-title">Сайт «Местечко» работает!</h2>
+                        <p class="news-text">Ожидается первый пост... <code>news.json</code> в репозитории.</p>
                     </div>
                 `;
             }
