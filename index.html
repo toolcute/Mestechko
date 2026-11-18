@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Местечко - Новости Челябинска</title>
+    <title>Местечко — Новости столицы Южного Урала</title>
+    <link rel="alternate" type="application/rss+xml" title="Местечко — Новости Челябинска (RSS)" href="https://toolcute.github.io/Mestechko/rss.xml">
     <!-- Google Fonts: Inter & Material Symbols -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" />
@@ -463,6 +464,15 @@
             font-size: 13px;
             color: var(--md-sys-color-outline);
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        footer a {
+            color: var(--md-sys-color-primary);
+            text-decoration: none;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -520,7 +530,7 @@
                 </div>
             </div>
 
-            <!-- Прокручиваемые фото-приколы -->
+           <!-- Прокручиваемые фото-приколы -->
             <div class="joke-carousel">
                 <div class="carousel-track" id="carousel-track">
                     <div class="joke-slide">
@@ -528,7 +538,7 @@
                              onerror="this.src='https://placehold.co/320x185/322D29/E8C4A2?text=Крутость+дня'" 
                              alt="Крутость 1">
                         <div class="joke-caption">
-                            <strong>Photo 3</strong>
+                            <strong>Photo-3</strong>
                             Тут будет фото 3.
                         </div>
                     </div>
@@ -581,6 +591,11 @@
     </footer>
 
     <script>
+
+        <a href="rss.xml" target="_blank">RSS-лента для Местячкового</a>
+    </footer>
+
+    <script>
         // 1. Логика кастомного курсора
         const dot = document.getElementById('cursor-dot');
         const ring = document.getElementById('cursor-ring');
@@ -593,7 +608,6 @@
             mouseX = e.clientX;
             mouseY = e.clientY;
 
-            // Точка
             dot.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
 
             if (!isCursorVisible) {
@@ -605,7 +619,6 @@
             }
         });
 
-        // Плавная анимация отстающего кольца
         function animateCursorRing() {
             ringX += (mouseX - ringX) * 0.18;
             ringY += (mouseY - ringY) * 0.18;
@@ -657,7 +670,7 @@
             const container = document.getElementById('news-container');
             try {
                 const response = await fetch('news.json?' + new Date().getTime());
-                if (!response.ok) throw new Error('Файл новостей не найден! Беда..');
+                if (!response.ok) throw new Error('Файл новостей пока не создан');
                 
                 const newsList = await response.json();
                 
@@ -685,7 +698,7 @@
                     <div class="news-card" style="text-align: center; border-color: var(--md-sys-color-primary-container);">
                         <span class="material-symbols-rounded" style="font-size: 36px; color: var(--md-sys-color-primary); margin: 0 auto 4px;">info</span>
                         <h2 class="news-title">Сайт «Местечко» запущен!</h2>
-                        <p class="news-text">Ожидается синхронизация постов...</p>
+                        <p class="news-text">Ожидается пост...<code>news.json</code> в репозитории.</p>
                     </div>
                 `;
             }
