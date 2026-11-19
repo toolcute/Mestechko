@@ -222,16 +222,16 @@
 
         .layout-wrapper {
             width: 100%;
-            max-width: 1280px;
+            max-width: 1140px;
             padding: 0 24px;
             display: grid;
-            grid-template-columns: 1fr 480px;
+            grid-template-columns: 1fr 340px;
             gap: 28px;
             margin-top: 8px;
             align-items: start;
         }
 
-        @media (max-width: 1040px) {
+        @media (max-width: 900px) {
             .layout-wrapper {
                 grid-template-columns: 1fr;
             }
@@ -357,8 +357,8 @@
         .carousel-track {
             display: grid;
             grid-auto-flow: column;
-            grid-template-rows: 1fr;
-            grid-auto-columns: calc(50% - 6px);
+            grid-template-rows: repeat(2, 1fr);
+            grid-auto-columns: 100%;
             gap: 12px;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
@@ -368,12 +368,6 @@
 
         .carousel-track::-webkit-scrollbar {
             display: none;
-        }
-
-        @media (max-width: 520px) {
-            .carousel-track {
-                grid-auto-columns: 100%;
-            }
         }
 
         .joke-slide {
@@ -402,7 +396,7 @@
         .joke-img-wrapper {
             position: relative;
             width: 100%;
-            height: 135px;
+            height: 155px;
             background-color: var(--md-sys-color-surface-container-high);
             overflow: hidden;
             flex-shrink: 0;
@@ -828,7 +822,7 @@
                             </div>
                             <div class="joke-caption">
                                 <strong>Кто это?</strong>
-                                Я серьезно. Кто это????
+                               Серьезно. Кто это???
                             </div>
                         </a>
                     </div>
@@ -1001,7 +995,7 @@
                 const newsList = await response.json();
                 
                 if (!newsList || newsList.length === 0) {
-                    container.innerHTML = `<div class="status-box">Пока нет ни одной новости.</div>`;
+                    container.innerHTML = `<div class="status-box">Пока нет ни одной новости. Ждем первый пост!</div>`;
                     return;
                 }
 
@@ -1023,8 +1017,8 @@
                 container.innerHTML = `
                     <div class="status-box">
                         <span class="material-symbols-rounded" style="font-size: 36px; color: var(--md-sys-color-primary); margin-bottom: 6px;">info</span>
-                        <h2 class="news-title" style="margin-bottom: 6px;">Сайт «Местечко» Работает!</h2>
-                        <p class="news-text">Ожидается первый пост...</code> в репозитории.</p>
+                        <h2 class="news-title" style="margin-bottom: 6px;">Сайт «Местечко» работает!</h2>
+                        <p class="news-text">Ожидается первый пост... <code>news.json</code> в репозитории.</p>
                     </div>
                 `;
             }
