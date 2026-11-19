@@ -1,1 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?> <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"> <channel> <title>Местечко — Новости Челябинска</title> <link>https://toolcute.github.io/Mestechko/</link> <description>Новости столицы Южного Урала</description> <language>ru</language> <lastBuildDate>Thu, 19 Nov 2026 03:33:00 +0500</lastBuildDate> <atom:link href="https://toolcute.github.io/Mestechko/rss.xml" rel="self" type="application/rss+xml" /> <item> <title>У ЧелГУ решили ограничить продажу алкоголя</title> <link>https://toolcute.github.io/Mestechko/</link> <guid isPermaLink="false">mestechko-chelgu-1</guid> <category>Челябинск</category> <pubDate>Thu, 19 Nov 2026 03:33:00 +0500</pubDate> <description>В супермаркете на улице Братьев Кашириных временно ограничили продажу алкоголя. Запрет будет действовать до 22 ноября. На размещённом у входа объявлении причиной назвали распоряжение мэрии, однако в администрации города опровергли эту информацию, заявив, что подобного приказа не издавали. По мнению покупателей, ограничения могут быть связаны с проведением Всероссийского слёта студенческих отрядов, который проходит на территории кампуса ЧелГУ.</description> </item> </channel> </rss>
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Местечко — Новости Челябинска</title>
+    <link>https://toolcute.github.io/Mestechko/</link>
+    <description>Новости столицы Южного Урала</description>
+    <language>ru</language>
+    <lastBuildDate>Thu, 19 Nov 2026 18:10:44 +0500</lastBuildDate>
+    <atom:link href="https://toolcute.github.io/Mestechko/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Сегодня состоится игра Металлурга и Трактора.</title>
+      <link>https://toolcute.github.io/Mestechko/?news=1795093842658</link>
+      <guid isPermaLink="false">mestechko-1795093842658</guid>
+      <category>Челябинск</category>
+      <pubDate>Thu, 19 Nov 2026 18:10:42 +0500</pubDate>
+      <description>Сегодня, через 50 минут, в Магнитогорске состоится хоккейное противостояние между «Металлургом» и челябинским «Трактором». Команды встретятся на льду «Арены Металлург». Стартовый свисток прозвучит в 19:00 по местному времени. Ожидается напряжённая борьба между принципиальными соперниками.</description>
+    </item>
+    <item>
+      <title>У ЧелГУ решили ограничить продажу алкоголя</title>
+      <link>https://toolcute.github.io/Mestechko/?news=1795041211816</link>
+      <guid isPermaLink="false">mestechko-1795041211816</guid>
+      <category>Челябинск</category>
+      <pubDate>Thu, 19 Nov 2026 03:33:31 +0500</pubDate>
+      <description>В супермаркете на улице Братьев Кашириных временно ограничили продажу алкоголя. 
+Запрет будет действовать до 22 ноября. 
+На размещённом у входа объявлении причиной назвали распоряжение мэрии, однако в администрации города опровергли эту информацию, заявив, что подобного приказа не издавали.
+По мнению покупателей, ограничения могут быть связаны с проведением Всероссийского слёта студенческих отрядов, который проходит на территории кампуса ЧелГУ.</description>
+    </item>
+  </channel>
+</rss>
