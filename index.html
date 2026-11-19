@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Местечко — Новости столицы Южного Урала</title>
-
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%235D411B'/%3E%3Ccircle cx='32' cy='25' r='9' fill='%23FFDDC3'/%3E%3Cpath d='M20 46c0-6.6 5.4-12 12-12s12 5.4 12 12' fill='%23FFDDC3'/%3E%3C/svg%3E">
     <link rel="alternate" type="application/rss+xml" title="Местечко — Новости Челябинска (RSS)" href="https://toolcute.github.io/Mestechko/rss.xml">
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" />
     
     <style>
-
         :root {
             --md-sys-color-background: #141210;
             --md-sys-color-surface: #1C1917;
@@ -56,7 +53,6 @@
             padding-bottom: 60px;
             overflow-x: hidden;
         }
-
 
         .md3-cursor-dot,
         .md3-cursor-ring {
@@ -126,7 +122,6 @@
             }
         }
 
-
         header {
             width: 100%;
             max-width: 1280px;
@@ -175,7 +170,6 @@
             letter-spacing: -0.5px;
             line-height: 1.1;
         }
-
 
         .app-promo-pill {
             background-color: var(--md-sys-color-surface-container-high);
@@ -226,7 +220,6 @@
             color: var(--md-sys-color-on-surface);
         }
 
-
         .layout-wrapper {
             width: 100%;
             max-width: 1280px;
@@ -243,7 +236,6 @@
                 grid-template-columns: 1fr;
             }
         }
-
 
         main {
             display: flex;
@@ -265,7 +257,6 @@
             flex-direction: column;
             gap: 18px;
         }
-
 
         .news-card {
             background-color: var(--md-sys-color-surface);
@@ -325,7 +316,6 @@
             border: 1px dashed var(--md-sys-color-outline-variant);
         }
 
-
         aside.sidebar-cutout {
             background-color: var(--md-sys-color-surface);
             border-radius: var(--md-shape-corner-extra-large);
@@ -359,7 +349,6 @@
             font-weight: 500;
         }
 
-
         .joke-carousel {
             position: relative;
             overflow: hidden;
@@ -368,7 +357,7 @@
         .carousel-track {
             display: grid;
             grid-auto-flow: column;
-            grid-template-rows: repeat(2, 1fr);
+            grid-template-rows: 1fr;
             grid-auto-columns: calc(50% - 6px);
             gap: 12px;
             overflow-x: auto;
@@ -413,7 +402,7 @@
         .joke-img-wrapper {
             position: relative;
             width: 100%;
-            height: 125px;
+            height: 135px;
             background-color: var(--md-sys-color-surface-container-high);
             overflow: hidden;
             flex-shrink: 0;
@@ -430,7 +419,6 @@
         .joke-slide-link:hover .joke-img-wrapper img {
             transform: scale(1.04);
         }
-
 
         .ad-pill-badge {
             position: absolute;
@@ -465,10 +453,9 @@
             line-height: 1.25;
         }
 
-
         .text-only-ad {
             height: 100%;
-            min-height: 220px;
+            min-height: 230px;
             padding: 16px 12px;
             display: flex;
             flex-direction: column;
@@ -524,7 +511,6 @@
             color: var(--md-sys-color-on-primary-container);
         }
 
-
         .bumpers-section {
             display: flex;
             flex-direction: column;
@@ -562,7 +548,6 @@
             display: block;
             image-rendering: pixelated;
         }
-
 
         .md3-modal-backdrop {
             position: fixed;
@@ -669,10 +654,8 @@
 </head>
 <body>
 
-
     <div class="md3-cursor-ring" id="cursor-ring"></div>
     <div class="md3-cursor-dot" id="cursor-dot"></div>
-
 
     <div class="md3-modal-backdrop" id="ad1-modal">
         <div class="md3-modal-dialog" role="dialog" aria-modal="true">
@@ -683,7 +666,6 @@
             </div>
         </div>
     </div>
-
 
     <header>
         <div class="brand">
@@ -696,7 +678,6 @@
             </div>
         </div>
 
-
         <a href="https://github.com/toolcute/mestyachkovoe/releases" target="_blank" rel="noopener" class="app-promo-pill" title="Скачать приложение Mestyachkovoe">
             <div class="app-promo-icon">
                 <span class="material-symbols-rounded" style="font-size: 18px;">download</span>
@@ -708,9 +689,7 @@
         </a>
     </header>
 
-
     <div class="layout-wrapper">
-
         <main>
             <div class="section-title">Новости столицы Южного Урала</div>
             <div id="news-container">
@@ -718,12 +697,11 @@
             </div>
         </main>
 
- 
         <aside class="sidebar-cutout">
             <div class="sidebar-header">
                 <div>
                     <span class="sidebar-label">Крутость</span>
-                    <span class="slide-counter" id="slide-counter">1 / 3</span>
+                    <span class="slide-counter" id="slide-counter">1 / 5</span>
                 </div>
                 <div class="carousel-controls">
                     <button class="carousel-btn" id="prev-slide" aria-label="Назад">
@@ -735,15 +713,13 @@
                 </div>
             </div>
 
-
             <div class="joke-carousel">
                 <div class="carousel-track" id="carousel-track">
                     
-
                     <div class="joke-slide">
                         <a href="#ad1" class="joke-slide-link" id="ad1-trigger">
                             <div class="joke-img-wrapper">
-                                <img src="ad1.jpg" onerror="this.src='https://placehold.co/240x125/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 1">
+                                <img src="ad1.jpg" onerror="this.src='https://placehold.co/240x135/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 1">
                                 <span class="ad-pill-badge">реклама</span>
                             </div>
                             <div class="joke-caption">
@@ -753,11 +729,10 @@
                         </a>
                     </div>
 
-
                     <div class="joke-slide">
                         <a href="https://youtu.be/_TX_Hd64z0U?si=bkeegWmTG_RzoyNT" target="_blank" rel="noopener" class="joke-slide-link">
                             <div class="joke-img-wrapper">
-                                <img src="ad2.jpg" onerror="this.src='https://placehold.co/240x125/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 2">
+                                <img src="ad2.jpg" onerror="this.src='https://placehold.co/240x135/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 2">
                                 <span class="ad-pill-badge">реклама</span>
                             </div>
                             <div class="joke-caption">
@@ -767,11 +742,10 @@
                         </a>
                     </div>
 
-
                     <div class="joke-slide">
                         <a href="https://youtu.be/P9lzdUSkd9A?si=uTdyIYDjjD6wBiHe" target="_blank" rel="noopener" class="joke-slide-link">
                             <div class="joke-img-wrapper">
-                                <img src="ad3.jpg" onerror="this.src='https://placehold.co/240x125/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 3">
+                                <img src="ad3.jpg" onerror="this.src='https://placehold.co/240x135/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 3">
                                 <span class="ad-pill-badge">реклама</span>
                             </div>
                             <div class="joke-caption">
@@ -781,11 +755,10 @@
                         </a>
                     </div>
 
-
                     <div class="joke-slide">
                         <a href="https://youtu.be/F09hEW1wYTQ?si=E_ILFWO_xzDt_uy1" target="_blank" rel="noopener" class="joke-slide-link">
                             <div class="joke-img-wrapper">
-                                <img src="ad4.jpg" onerror="this.src='https://placehold.co/240x125/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 4">
+                                <img src="ad4.jpg" onerror="this.src='https://placehold.co/240x135/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 4">
                                 <span class="ad-pill-badge">реклама</span>
                             </div>
                             <div class="joke-caption">
@@ -795,11 +768,10 @@
                         </a>
                     </div>
 
-
                     <div class="joke-slide">
                         <a href="https://cats-on-stamps.neocities.org/wild-cats" target="_blank" rel="noopener" class="joke-slide-link">
                             <div class="joke-img-wrapper">
-                                <img src="ad5.jpg" onerror="this.src='https://placehold.co/240x125/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 5">
+                                <img src="ad5.jpg" onerror="this.src='https://placehold.co/240x135/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 5">
                                 <span class="ad-pill-badge">реклама</span>
                             </div>
                             <div class="joke-caption">
@@ -809,11 +781,10 @@
                         </a>
                     </div>
 
-
                     <div class="joke-slide">
                         <a href="https://www.consultant.ru/document/cons_doc_LAW_23735/fdd79bed15963d492a3c65008910597708c9c213/" target="_blank" rel="noopener" class="joke-slide-link">
                             <div class="joke-img-wrapper">
-                                <img src="ad6.jpg" onerror="this.src='https://placehold.co/240x125/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 6">
+                                <img src="ad6.jpg" onerror="this.src='https://placehold.co/240x135/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 6">
                                 <span class="ad-pill-badge">реклама</span>
                             </div>
                             <div class="joke-caption">
@@ -823,11 +794,10 @@
                         </a>
                     </div>
 
-
                     <div class="joke-slide">
                         <a href="https://t.me/+Zo1FwzzCMxllNTNi" target="_blank" rel="noopener" class="joke-slide-link">
                             <div class="joke-img-wrapper">
-                                <img src="ad7.jpg" onerror="this.src='https://placehold.co/240x125/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 7">
+                                <img src="ad7.jpg" onerror="this.src='https://placehold.co/240x135/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 7">
                                 <span class="ad-pill-badge">реклама</span>
                             </div>
                             <div class="joke-caption">
@@ -837,11 +807,10 @@
                         </a>
                     </div>
 
-
                     <div class="joke-slide">
                         <a href="https://www.tiktok.com/t/ZPN83nEWR/" target="_blank" rel="noopener" class="joke-slide-link">
                             <div class="joke-img-wrapper">
-                                <img src="ad8.jpg" onerror="this.src='https://placehold.co/240x125/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 8">
+                                <img src="ad8.jpg" onerror="this.src='https://placehold.co/240x135/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 8">
                                 <span class="ad-pill-badge">реклама</span>
                             </div>
                             <div class="joke-caption">
@@ -851,20 +820,18 @@
                         </a>
                     </div>
 
-
                     <div class="joke-slide">
                         <a href="#ad9" class="joke-slide-link" onclick="return false;">
                             <div class="joke-img-wrapper">
-                                <img src="ad9.jpg" onerror="this.src='https://placehold.co/240x125/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 9">
+                                <img src="ad9.jpg" onerror="this.src='https://placehold.co/240x135/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 9">
                                 <span class="ad-pill-badge">реклама</span>
                             </div>
                             <div class="joke-caption">
                                 <strong>Кто это?</strong>
-                                Серьезно. Кто это? Как его зовут???
+                                Я серьезно. Кто это????
                             </div>
                         </a>
                     </div>
-
 
                     <div class="joke-slide">
                         <div class="text-only-ad">
@@ -878,7 +845,6 @@
 
                 </div>
             </div>
-
 
             <div class="bumpers-section">
                 <span class="sidebar-label">Бамперы 88×31!!</span>
@@ -912,7 +878,6 @@
     </footer>
 
     <script>
-
         const dot = document.getElementById('cursor-dot');
         const ring = document.getElementById('cursor-ring');
         
@@ -968,7 +933,6 @@
             }
         });
 
-
         const ad1Modal = document.getElementById('ad1-modal');
         const ad1Trigger = document.getElementById('ad1-trigger');
         const ad1CloseBtn = document.getElementById('ad1-close-btn');
@@ -992,7 +956,6 @@
                 ad1Modal.classList.remove('open');
             }
         });
-
 
         const track = document.getElementById('carousel-track');
         const prevBtn = document.getElementById('prev-slide');
@@ -1029,7 +992,6 @@
             }
         });
 
-
         async function loadNews() {
             const container = document.getElementById('news-container');
             try {
@@ -1061,8 +1023,8 @@
                 container.innerHTML = `
                     <div class="status-box">
                         <span class="material-symbols-rounded" style="font-size: 36px; color: var(--md-sys-color-primary); margin-bottom: 6px;">info</span>
-                        <h2 class="news-title" style="margin-bottom: 6px;">Сайт «Местечко» запущен!</h2>
-                        <p class="news-text">Ожидается первый пост...<code>news.json</code> в репозитории.</p>
+                        <h2 class="news-title" style="margin-bottom: 6px;">Сайт «Местечко» Работает!</h2>
+                        <p class="news-text">Ожидается первый пост...</code> в репозитории.</p>
                     </div>
                 `;
             }
@@ -1078,4 +1040,3 @@
     </script>
 </body>
 </html>
-
