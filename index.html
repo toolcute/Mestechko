@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Местечко - Новости столицы Южного Урала</title>
+    <title>Местечко — Новости столицы Южного Урала</title>
 
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%235D411B'/%3E%3Ccircle cx='32' cy='25' r='9' fill='%23FFDDC3'/%3E%3Cpath d='M20 46c0-6.6 5.4-12 12-12s12 5.4 12 12' fill='%23FFDDC3'/%3E%3C/svg%3E">
     <link rel="alternate" type="application/rss+xml" title="Местечко — Новости Челябинска (RSS)" href="https://toolcute.github.io/Mestechko/rss.xml">
@@ -129,7 +129,7 @@
 
         header {
             width: 100%;
-            max-width: 1240px;
+            max-width: 1280px;
             padding: 32px 24px 20px 24px;
             display: flex;
             justify-content: space-between;
@@ -229,16 +229,16 @@
 
         .layout-wrapper {
             width: 100%;
-            max-width: 1240px;
+            max-width: 1280px;
             padding: 0 24px;
             display: grid;
-            grid-template-columns: 1fr 330px;
+            grid-template-columns: 1fr 480px;
             gap: 28px;
             margin-top: 8px;
             align-items: start;
         }
 
-        @media (max-width: 960px) {
+        @media (max-width: 1040px) {
             .layout-wrapper {
                 grid-template-columns: 1fr;
             }
@@ -260,30 +260,22 @@
             margin-bottom: 2px;
         }
 
-
         #news-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            align-items: stretch;
-        }
-
-        @media (max-width: 680px) {
-            #news-container {
-                grid-template-columns: 1fr;
-            }
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
         }
 
 
         .news-card {
             background-color: var(--md-sys-color-surface);
             border-radius: var(--md-shape-corner-extra-large);
-            padding: 22px;
+            padding: 24px;
             border: 1px solid var(--md-sys-color-outline-variant);
             transition: transform 0.2s, background-color 0.2s, border-color 0.2s;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
         .news-card:hover {
@@ -296,7 +288,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 11px;
+            font-size: 12px;
             color: var(--md-sys-color-outline);
             gap: 8px;
         }
@@ -304,28 +296,27 @@
         .news-tag {
             background-color: var(--md-sys-color-primary-container);
             color: var(--md-sys-color-on-primary-container);
-            padding: 4px 10px;
+            padding: 4px 12px;
             border-radius: var(--md-shape-corner-medium);
             font-weight: 500;
             white-space: nowrap;
         }
 
         .news-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 600;
             color: var(--md-sys-color-on-surface);
             line-height: 1.3;
         }
 
         .news-text {
-            font-size: 14px;
+            font-size: 15px;
             color: var(--md-sys-color-on-surface-variant);
-            line-height: 1.55;
+            line-height: 1.6;
             white-space: pre-line;
         }
 
         .status-box {
-            grid-column: 1 / -1;
             text-align: center;
             padding: 44px 24px;
             color: var(--md-sys-color-outline);
@@ -371,14 +362,15 @@
 
         .joke-carousel {
             position: relative;
-            border-radius: var(--md-shape-corner-large);
             overflow: hidden;
-            background-color: var(--md-sys-color-surface-container);
-            border: 1px solid var(--md-sys-color-outline-variant);
         }
 
         .carousel-track {
-            display: flex;
+            display: grid;
+            grid-auto-flow: column;
+            grid-template-rows: repeat(2, 1fr);
+            grid-auto-columns: calc(50% - 6px);
+            gap: 12px;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
@@ -389,11 +381,25 @@
             display: none;
         }
 
+        @media (max-width: 520px) {
+            .carousel-track {
+                grid-auto-columns: 100%;
+            }
+        }
+
         .joke-slide {
-            flex: 0 0 100%;
             scroll-snap-align: start;
             display: flex;
             flex-direction: column;
+            border-radius: var(--md-shape-corner-large);
+            overflow: hidden;
+            background-color: var(--md-sys-color-surface-container);
+            border: 1px solid var(--md-sys-color-outline-variant);
+            transition: border-color 0.2s, transform 0.2s;
+        }
+
+        .joke-slide:hover {
+            border-color: var(--md-sys-color-outline);
         }
 
         .joke-slide-link {
@@ -407,9 +413,10 @@
         .joke-img-wrapper {
             position: relative;
             width: 100%;
-            height: 195px;
+            height: 125px;
             background-color: var(--md-sys-color-surface-container-high);
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .joke-img-wrapper img {
@@ -421,76 +428,77 @@
         }
 
         .joke-slide-link:hover .joke-img-wrapper img {
-            transform: scale(1.03);
+            transform: scale(1.04);
         }
 
 
         .ad-pill-badge {
             position: absolute;
-            right: 10px;
-            bottom: 10px;
-            background-color: rgba(20, 18, 16, 0.78);
+            right: 8px;
+            bottom: 8px;
+            background-color: rgba(20, 18, 16, 0.8);
             backdrop-filter: blur(6px);
             color: var(--md-sys-color-on-surface-variant);
             border: 1px solid rgba(232, 196, 162, 0.25);
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 600;
             letter-spacing: 0.4px;
-            padding: 3px 10px;
+            padding: 2px 8px;
             border-radius: var(--md-shape-corner-full);
             pointer-events: none;
         }
 
         .joke-caption {
-            padding: 14px;
-            font-size: 12.5px;
+            padding: 10px 11px;
+            font-size: 11px;
             color: var(--md-sys-color-on-surface-variant);
-            line-height: 1.45;
+            line-height: 1.38;
             word-break: break-word;
+            flex-grow: 1;
         }
 
         .joke-caption strong {
             color: var(--md-sys-color-primary);
             display: block;
-            font-size: 13.5px;
-            margin-bottom: 5px;
-            line-height: 1.3;
+            font-size: 12px;
+            margin-bottom: 4px;
+            line-height: 1.25;
         }
 
 
         .text-only-ad {
-            min-height: 270px;
-            padding: 24px 18px;
+            height: 100%;
+            min-height: 220px;
+            padding: 16px 12px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             background: radial-gradient(circle at top right, var(--md-sys-color-primary-container), var(--md-sys-color-surface-container));
-            gap: 10px;
+            gap: 8px;
         }
 
         .text-only-ad .ad-icon {
-            width: 44px;
-            height: 44px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             background-color: rgba(232, 196, 162, 0.15);
             color: var(--md-sys-color-primary);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 4px;
         }
 
         .text-only-ad strong {
             color: var(--md-sys-color-on-primary-container);
-            font-size: 16px;
-            line-height: 1.3;
+            font-size: 13.5px;
+            line-height: 1.25;
         }
 
         .text-only-ad span {
             color: var(--md-sys-color-on-surface-variant);
-            font-size: 13px;
+            font-size: 11.5px;
         }
 
         .carousel-controls {
@@ -706,16 +714,16 @@
         <main>
             <div class="section-title">Новости столицы Южного Урала</div>
             <div id="news-container">
-                <div class="status-box">Загрузка новостей из Челябинска...</div>
+                <div class="status-box">Загрузка свежих новостей из Челябинска...</div>
             </div>
         </main>
 
-
+ 
         <aside class="sidebar-cutout">
             <div class="sidebar-header">
                 <div>
                     <span class="sidebar-label">Крутость</span>
-                    <span class="slide-counter" id="slide-counter">1 / 10</span>
+                    <span class="slide-counter" id="slide-counter">1 / 3</span>
                 </div>
                 <div class="carousel-controls">
                     <button class="carousel-btn" id="prev-slide" aria-label="Назад">
@@ -735,7 +743,7 @@
                     <div class="joke-slide">
                         <a href="#ad1" class="joke-slide-link" id="ad1-trigger">
                             <div class="joke-img-wrapper">
-                                <img src="ad1.jpg" onerror="this.src='https://placehold.co/330x195/322D29/E8C4A2?text=Загрузи+ad1.jpg'" alt="Баннер 1">
+                                <img src="ad1.jpg" onerror="this.src='https://placehold.co/240x125/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 1">
                                 <span class="ad-pill-badge">реклама</span>
                             </div>
                             <div class="joke-caption">
@@ -749,7 +757,7 @@
                     <div class="joke-slide">
                         <a href="https://youtu.be/_TX_Hd64z0U?si=bkeegWmTG_RzoyNT" target="_blank" rel="noopener" class="joke-slide-link">
                             <div class="joke-img-wrapper">
-                                <img src="ad2.jpg" onerror="this.src='https://placehold.co/330x195/322D29/E8C4A2?text=Загрузи+ad2.jpg'" alt="Баннер 2">
+                                <img src="ad2.jpg" onerror="this.src='https://placehold.co/240x125/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 2">
                                 <span class="ad-pill-badge">реклама</span>
                             </div>
                             <div class="joke-caption">
@@ -763,7 +771,7 @@
                     <div class="joke-slide">
                         <a href="https://youtu.be/P9lzdUSkd9A?si=uTdyIYDjjD6wBiHe" target="_blank" rel="noopener" class="joke-slide-link">
                             <div class="joke-img-wrapper">
-                                <img src="ad3.jpg" onerror="this.src='https://placehold.co/330x195/322D29/E8C4A2?text=Загрузи+ad3.jpg'" alt="Баннер 3">
+                                <img src="ad3.jpg" onerror="this.src='https://placehold.co/240x125/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 3">
                                 <span class="ad-pill-badge">реклама</span>
                             </div>
                             <div class="joke-caption">
@@ -777,7 +785,7 @@
                     <div class="joke-slide">
                         <a href="https://youtu.be/F09hEW1wYTQ?si=E_ILFWO_xzDt_uy1" target="_blank" rel="noopener" class="joke-slide-link">
                             <div class="joke-img-wrapper">
-                                <img src="ad4.jpg" onerror="this.src='https://placehold.co/330x195/322D29/E8C4A2?text=Загрузи+ad4.jpg'" alt="Баннер 4">
+                                <img src="ad4.jpg" onerror="this.src='https://placehold.co/240x125/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 4">
                                 <span class="ad-pill-badge">реклама</span>
                             </div>
                             <div class="joke-caption">
@@ -791,12 +799,12 @@
                     <div class="joke-slide">
                         <a href="https://cats-on-stamps.neocities.org/wild-cats" target="_blank" rel="noopener" class="joke-slide-link">
                             <div class="joke-img-wrapper">
-                                <img src="ad5.jpg" onerror="this.src='https://placehold.co/330x195/322D29/E8C4A2?text=Загрузи+ad5.jpg'" alt="Баннер 5">
+                                <img src="ad5.jpg" onerror="this.src='https://placehold.co/240x125/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 5">
                                 <span class="ad-pill-badge">реклама</span>
                             </div>
                             <div class="joke-caption">
                                 <strong>МАНУЛОВ ПРИДУМАЛИ КОММУНИСТЫ</strong>
-                                Монулов придумали коммунисты. Это правда
+                                Монулов придумали коммунисты
                             </div>
                         </a>
                     </div>
@@ -805,7 +813,7 @@
                     <div class="joke-slide">
                         <a href="https://www.consultant.ru/document/cons_doc_LAW_23735/fdd79bed15963d492a3c65008910597708c9c213/" target="_blank" rel="noopener" class="joke-slide-link">
                             <div class="joke-img-wrapper">
-                                <img src="ad6.jpg" onerror="this.src='https://placehold.co/330x195/322D29/E8C4A2?text=Загрузи+ad6.jpg'" alt="Баннер 6">
+                                <img src="ad6.jpg" onerror="this.src='https://placehold.co/240x125/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 6">
                                 <span class="ad-pill-badge">реклама</span>
                             </div>
                             <div class="joke-caption">
@@ -819,7 +827,7 @@
                     <div class="joke-slide">
                         <a href="https://t.me/+Zo1FwzzCMxllNTNi" target="_blank" rel="noopener" class="joke-slide-link">
                             <div class="joke-img-wrapper">
-                                <img src="ad7.jpg" onerror="this.src='https://placehold.co/330x195/322D29/E8C4A2?text=Загрузи+ad7.jpg'" alt="Баннер 7">
+                                <img src="ad7.jpg" onerror="this.src='https://placehold.co/240x125/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 7">
                                 <span class="ad-pill-badge">реклама</span>
                             </div>
                             <div class="joke-caption">
@@ -829,10 +837,11 @@
                         </a>
                     </div>
 
+
                     <div class="joke-slide">
                         <a href="https://www.tiktok.com/t/ZPN83nEWR/" target="_blank" rel="noopener" class="joke-slide-link">
                             <div class="joke-img-wrapper">
-                                <img src="ad8" onerror="this.src='https://placehold.co/330x195/322D29/E8C4A2?text=Загрузи+ad8.jpg'" alt="Баннер 8">
+                                <img src="ad8.jpg" onerror="this.src='https://placehold.co/240x125/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 8">
                                 <span class="ad-pill-badge">реклама</span>
                             </div>
                             <div class="joke-caption">
@@ -846,12 +855,12 @@
                     <div class="joke-slide">
                         <a href="#ad9" class="joke-slide-link" onclick="return false;">
                             <div class="joke-img-wrapper">
-                                <img src="ad9.jpg" onerror="this.src='https://placehold.co/330x195/322D29/E8C4A2?text=Загрузи+ad9.jpg'" alt="Баннер 9">
+                                <img src="ad9.jpg" onerror="this.src='https://placehold.co/240x125/322D29/E8C4A2?text=произошла+ошибка'" alt="Баннер 9">
                                 <span class="ad-pill-badge">реклама</span>
                             </div>
                             <div class="joke-caption">
                                 <strong>Кто это?</strong>
-                                Я не понимаю кто это. кто это?
+                                Серьезно. Кто это? Как его зовут???
                             </div>
                         </a>
                     </div>
@@ -872,18 +881,18 @@
 
 
             <div class="bumpers-section">
-                <span class="sidebar-label">Мои бамперы (88x31)</span>
+                <span class="sidebar-label">Бамперы 88×31!!</span>
                 <div class="bumpers-grid">
                     <a href="https://youtu.be/pPkFnq1KzSE?si=cNEwjJvTv4rK6Ip1" target="_blank" rel="noopener" class="bumper-item" title="РКРП Свердловск.. о Боже">
                         <img src="https://cyber.dabamos.de/88x31/rkrp-sverdlovsk-88x31.gif" alt="РКРП Свердловск.. о Боже">
                     </a>
-                    <a href="https://youtu.be/RvVdFXOFcjw?si=PD9sL1NlWs0WJag2" target="_blank" rel="noopener" class="bumper-item" title="Blinchik">
+                    <a href="https://youtu.be/RvVdFXOFcjw?si=PD9sL1N1Ws0WJag2" target="_blank" rel="noopener" class="bumper-item" title="Blinchik">
                         <img src="https://cyber.dabamos.de/88x31/blinchik.gif" alt="Blinchik">
                     </a>
                     <a href="https://youtu.be/gVZzoXHbHN8?si=iI2w5CrpNN9iv4yn" target="_blank" rel="noopener" class="bumper-item" title="Web 1.0">
                         <img src="https://cyber.dabamos.de/88x31/icon03.gif" alt="Web Icon">
                     </a>
-                    <a href="https://youtu.be/AH-qc_Ab8lA?si=K4YkX26yS5O7-Ly-" target="_blank" rel="noopener" class="bumper-item" title="Free Download Mozilla">
+                    <a href="https://youtu.be/AH-qc_Ab81A?si=K4YkX26yS5O7-Ly-" target="_blank" rel="noopener" class="bumper-item" title="Free Download Mozilla">
                         <img src="https://cyber.dabamos.de/88x31/mozfd.gif" alt="Mozilla лучше Edge">
                     </a>
                     <a href="https://microslop.com/" target="_blank" rel="noopener" class="bumper-item" title="Microslop Windows Platform">
@@ -892,7 +901,6 @@
                     <a href="https://store.steampowered.com" target="_blank" rel="noopener" class="bumper-item" title="Play with Steam">
                         <img src="https://cyber.dabamos.de/88x31/steam.gif" alt="Steam!!!">
                     </a>
-
                 </div>
             </div>
         </aside>
@@ -960,6 +968,7 @@
             }
         });
 
+
         const ad1Modal = document.getElementById('ad1-modal');
         const ad1Trigger = document.getElementById('ad1-trigger');
         const ad1CloseBtn = document.getElementById('ad1-close-btn');
@@ -989,14 +998,20 @@
         const prevBtn = document.getElementById('prev-slide');
         const nextBtn = document.getElementById('next-slide');
         const slideCounter = document.getElementById('slide-counter');
-        const totalSlides = 10;
+
+        function getPagesCount() {
+            return Math.max(1, Math.ceil(track.scrollWidth / Math.max(1, track.clientWidth)));
+        }
 
         function updateCounter() {
-            const idx = Math.round(track.scrollLeft / track.clientWidth) + 1;
-            slideCounter.textContent = `${Math.min(Math.max(idx, 1), totalSlides)} / ${totalSlides}`;
+            const totalPages = getPagesCount();
+            const currentPage = Math.round(track.scrollLeft / Math.max(1, track.clientWidth)) + 1;
+            slideCounter.textContent = `${Math.min(Math.max(currentPage, 1), totalPages)} / ${totalPages}`;
         }
 
         track.addEventListener('scroll', updateCounter);
+        window.addEventListener('resize', updateCounter);
+        setTimeout(updateCounter, 100);
 
         prevBtn.addEventListener('click', () => {
             if (track.scrollLeft <= 5) {
@@ -1013,6 +1028,8 @@
                 track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
             }
         });
+
+
         async function loadNews() {
             const container = document.getElementById('news-container');
             try {
@@ -1022,7 +1039,7 @@
                 const newsList = await response.json();
                 
                 if (!newsList || newsList.length === 0) {
-                    container.innerHTML = `<div class="status-box">Пока нет ни одной новости...</div>`;
+                    container.innerHTML = `<div class="status-box">Пока нет ни одной новости.</div>`;
                     return;
                 }
 
@@ -1044,8 +1061,8 @@
                 container.innerHTML = `
                     <div class="status-box">
                         <span class="material-symbols-rounded" style="font-size: 36px; color: var(--md-sys-color-primary); margin-bottom: 6px;">info</span>
-                        <h2 class="news-title" style="margin-bottom: 6px;">Сайт «Местечко» работает!</h2>
-                        <p class="news-text">Ожидается первый пост... <code>news.json</code> в репозитории.</p>
+                        <h2 class="news-title" style="margin-bottom: 6px;">Сайт «Местечко» запущен!</h2>
+                        <p class="news-text">Ожидается первый пост...<code>news.json</code> в репозитории.</p>
                     </div>
                 `;
             }
@@ -1061,3 +1078,4 @@
     </script>
 </body>
 </html>
+
